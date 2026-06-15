@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persona Build Helper Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h2><a href="/">Persona Build Helper Tool</a></h2>
+        <ul>
+            <li id="P3R"><h3><a href="{{ url_for('p3r') }}">Persona 3 Reload</a></h3></li>
+            <li id="P4G"><h3><a href="{{ url_for('p4g') }}">Persona 4 Golden</a></h3></li>
+            <li id="P5R"><h3><a href="{{ url_for('p5r') }}">Persona 5 Royal</a></h3></li>
+            <li id="lang"><select name="language" id="language" class="select" onclick="optionSelect()">
+                <option value="en-us">🇺🇸 English</option>   
+                <option value="pt-br">🇧🇷 Português Brasileiro</option>
+            </select>
+            </li>
+            <!-- <li><nav id="data-theme" class="light"></nav></li> -->
+        </ul>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

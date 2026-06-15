@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section id="home">
+        <h1 id="welcome"></h1>
+        <p id="instructions"></p>
+    </section>
+    <script>
+        const langSelect = document.getElementById('language')
+        const welcome = document.getElementById('welcome')
+        const instructions = document.getElementById('instructions')
+
+        function atualizarIdioma(){
+            if (langSelect.value === "en-us"){
+                welcome.textContent = "Welcome to Persona Build Helper Tool!"
+                instructions.textContent = "Choose one of the games in the menu above to check the skills, equipment and Personas of their respective party members."
+            } else if (langSelect.value === "pt-br") {
+                welcome.textContent = "Bem-vindo ao Persona Build Helper Tool!";
+                instructions.textContent = "Escolha um dos jogos no menu acima para checar as habilidades, equipamentos e Personas de seus respectivos membros de equipe.";
+            }
+        }
+
+        langSelect.addEventListener('change', atualizarIdioma);
+        atualizarIdioma();
+    </script>
+{% endblock %}
