@@ -27,5 +27,30 @@
         {% block content %}
         {% endblock %}
     </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const langSelect = document.getElementById('language');
+
+            const savedLang = localStorage.getItem('userLanguage') || 'en-us';
+            langSelect.value = savedLang;
+
+            function translatePage() {
+                const lang = langSelect.value;
+                localStorage.setItem('userLanguage', lang);
+
+                if (typeof text !== 'undefined' && text[lang]) {
+                    Object.keys(text[lang]).forEach(id => {
+                        const element = document.getElementById(id);
+                        if (element) {
+                            element.textContent = text[lang][id];
+                    }
+                    });
+                }
+            }
+
+        langSelect.addEventListener('change', translatePage);
+        translatePage();
+    });
+</script>
 </body>
 </html>

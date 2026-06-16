@@ -4,23 +4,22 @@
     <section id="home">
         <h1 id="welcome"></h1>
         <p id="instructions"></p>
+        <nav id="games">
+            <a href="{{ url_for('p3r') }}"><img src="{{ url_for('static', filename='p3r_cover.png') }}" alt="Persona 3 Reload cover"></a>
+            <a href="{{ url_for('p4g') }}"><img src="{{ url_for('static', filename='p4g_cover.png') }}" alt="Persona 4 Golden cover"></a>
+            <a href="{{ url_for('p5r') }}"><img src="{{ url_for('static', filename='p5r_cover.jpg') }}" alt="Persona 5 Royal cover"><a>
+        </nav>
     </section>
     <script>
-        const langSelect = document.getElementById('language')
-        const welcome = document.getElementById('welcome')
-        const instructions = document.getElementById('instructions')
-
-        function atualizarIdioma(){
-            if (langSelect.value === "en-us"){
-                welcome.textContent = "Welcome to Persona Build Helper Tool!"
-                instructions.textContent = "Choose one of the games in the menu above to check the skills, equipment and Personas of their respective party members."
-            } else if (langSelect.value === "pt-br") {
-                welcome.textContent = "Bem-vindo ao Persona Build Helper Tool!";
-                instructions.textContent = "Escolha um dos jogos no menu acima para checar as habilidades, equipamentos e Personas de seus respectivos membros de equipe.";
+        const text = {
+            'en-us': {
+                'welcome': "Welcome to Persona Build Helper Tool!",
+                'instructions': "Choose one of the games in the menu above or click the cover of the game below to check the skills, equipment and Personas (including how to obtain them) of their respective party members."
+            },
+            'pt-br': {
+                'welcome': "Bem-vindo ao Persona Build Helper Tool!",
+                'instructions': "Escolha um dos jogos no menu acima ou clique na capa do jogo abaixo para checar as habilidades, equipamentos e Personas (incluindo como obtê-los) de seus respectivos membros de equipe."
             }
-        }
-
-        langSelect.addEventListener('change', atualizarIdioma);
-        atualizarIdioma();
+        };
     </script>
 {% endblock %}

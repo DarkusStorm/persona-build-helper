@@ -9,7 +9,7 @@ header {
     color: #ffffff;
     padding: 1rem;
     display: flex;
-    flex-direction: column; /* Elementos empilhados no celular */
+    flex-direction: column; /* Piled elements */
     align-items: center;
     gap: 1rem;
     text-align: center;
@@ -46,45 +46,91 @@ header h3 {
     font-weight: 600;
 }
 
-section {
+#home {
     background-color: #1a1a1a;
     text-align: center;
     justify-content: center;
-    margin-top: 10vh;
-    margin-left: 200px;
-    margin-right: 200px;
-    padding-bottom: 8vh;
+    margin: 2rem auto;
+    width: 92%;
+    max-width: 1100px;
+    padding: 2rem 1.5rem;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
-section h1 {
+#home h1 {
     background-color: #050505;
-    border-radius: 20px;
-    margin-bottom: 5vh;
+    border-radius: 15px;
+    margin-bottom: 2rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
 }
 
-/* Persona 3 Reload (Azul) */
+#games {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 15px;
+    gap: 1px;
+}
+
+#games img {
+    width: 100%;
+    
+    max-width: 200px;
+
+    aspect-ratio: 2 / 3;     
+    object-fit: cover;
+    
+    image-rendering: high-quality;
+    -webkit-font-smoothing: antialiased;
+
+    border-radius: 12px; 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    display: block;
+    margin: 0 auto;
+}
+
+#games img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+}
+
+@media (min-width: 600px) {
+    #games {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (min-width: 900px) {
+    #games {
+        grid-template-columns: repeat(3, 1fr); 
+    }
+}
+
+/* Persona 3 Reload (Blue) */
 #P3R {
     background-color: rgb(57, 147, 249);
     color: #ffffff;
 }
 #P3R:hover {
     background-color: rgb(17, 105, 206);
-    transform: translateY(-2px); /* Efeito sutil de flutuar */
+    transform: translateY(-2px);
 }
 
-/* Persona 4 Golden (Amarelo) */
+/* Persona 4 Golden (Yellow) */
 #P4G {
     background-color: rgb(255, 221, 0);
-    color: #000000; /* Texto preto para melhor contraste com amarelo */
+    color: #000000; /* Black text for better contrast */
 }
 #P4G:hover {
     background-color: rgb(220, 191, 0);
     transform: translateY(-2px);
 }
 
-/* Persona 5 Royal (Vermelho) */
+/* Persona 5 Royal (Red) */
 #P5R {
     background-color: rgb(255, 0, 0);
     color: #ffffff;
