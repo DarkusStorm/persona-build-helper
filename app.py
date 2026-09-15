@@ -1,6 +1,10 @@
 from flask import Flask, render_template
+from data.database import init_db
+from models.party_member import PartyMember
 
 app = Flask(__name__)
+
+init_db()
 
 @app.route('/')
 def index():

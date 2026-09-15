@@ -76,15 +76,10 @@ header h3 {
 
 #games img {
     width: 100%;
-    
     max-width: 200px;
-
     aspect-ratio: 2 / 3;     
-    object-fit: cover;
+    object-fit: contain;
     
-    image-rendering: high-quality;
-    -webkit-font-smoothing: antialiased;
-
     border-radius: 12px; 
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -112,11 +107,11 @@ header h3 {
 
 /* Persona 3 Reload (Blue) */
 #P3R {
-    background-color: rgb(57, 147, 249);
+    background-color: rgb(11, 75, 147);
     color: #ffffff;
 }
 #P3R:hover {
-    background-color: rgb(17, 105, 206);
+    background-color: rgb(0, 50, 107);
     transform: translateY(-2px);
 }
 
@@ -132,11 +127,11 @@ header h3 {
 
 /* Persona 5 Royal (Red) */
 #P5R {
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(161, 0, 0);
     color: #ffffff;
 }
 #P5R:hover {
-    background-color: rgb(185, 0, 0);
+    background-color: rgb(143, 0, 0);
     transform: translateY(-2px);
 }
 
@@ -156,6 +151,12 @@ header h3 {
 
 #lang:hover {
     background-color: #424242;
+}
+
+a:focus-visible, select:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 4px;
+    border-radius: 4px;
 }
 
 @media (min-width: 700px) {
