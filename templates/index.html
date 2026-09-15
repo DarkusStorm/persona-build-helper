@@ -7,19 +7,7 @@
         <nav id="games">
             <a href="{{ url_for('p3r') }}"><img src="{{ url_for('static', filename='p3r_cover.png') }}" alt="Persona 3 Reload cover"></a>
             <a href="{{ url_for('p4g') }}"><img src="{{ url_for('static', filename='p4g_cover.png') }}" alt="Persona 4 Golden cover"></a>
-            <a href="{{ url_for('p5r') }}"><img src="{{ url_for('static', filename='p5r_cover.jpg') }}" alt="Persona 5 Royal cover"><a>
+            <a href="{{ url_for('p5r') }}"><img src="{{ url_for('static', filename='p5r_cover.jpg') }}" alt="Persona 5 Royal cover"></a>
         </nav>
     </section>
-    <script>
-        const text = {
-            'en-us': {
-                'welcome': "Welcome to Persona Build Helper Tool!",
-                'instructions': "Choose one of the games in the menu above or click the cover of the game below to check the skills, equipment and Personas (including how to obtain them) of their respective party members."
-            },
-            'pt-br': {
-                'welcome': "Bem-vindo ao Persona Build Helper Tool!",
-                'instructions': "Escolha um dos jogos no menu acima ou clique na capa do jogo abaixo para checar as habilidades, equipamentos e Personas (incluindo como obtê-los) de seus respectivos membros de equipe."
-            }
-        };
-    </script>
 {% endblock %}
