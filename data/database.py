@@ -1,7 +1,8 @@
 import os
 import sqlite3
-from typing import Optional, Type, Any, Self
 from types import TracebackType
+from typing import Self
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -10,11 +11,11 @@ DB_PATH = os.getenv("DATABASE", "data/persona.db")
 
 def init_db(db_name: str = DB_PATH) -> None:
     os.makedirs(os.path.dirname(db_name), exist_ok=True)
-    
+
     with sqlite3.connect(db_name) as conn:
         conn.execute("PRAGMA foreign_keys = ON;")
         cursor = conn.cursor()
-        
+
         cursor.executescript("""
         CREATE TABLE IF NOT EXISTS game (
             id TEXT PRIMARY KEY, -- 'p3r', 'p4g', 'p5r'
@@ -26,6 +27,7 @@ def init_db(db_name: str = DB_PATH) -> None:
             game_id TEXT NOT NULL,
             nome TEXT NOT NULL,
             tipo_equipamento TEXT NOT NULL,
+            wild_card INTEGER NOT NULL DEFAULT 0,
             FOREIGN KEY (game_id) REFERENCES game(id)
         );
 
@@ -76,8 +78,10 @@ def init_db(db_name: str = DB_PATH) -> None:
 class Database:
     def __init__(self, db_name: str = DB_PATH) -> None:
         self.connection = sqlite3.connect(db_name)
-        # Permite acessar colunas como dicionário no Python/Jinja (ex: row['nome_en'])
+
+        # Acessa colunas como dicionário no Python/Jinja (ex: row['nome_en'])
         self.connection.row_factory = sqlite3.Row
+
         self.connection.execute("PRAGMA foreign_keys = ON;")
         self.cursor = self.connection.cursor()
 
@@ -90,7 +94,7 @@ class Database:
         self.cursor.execute(query, params)
         return self.cursor.fetchall()
 
-    def buscar_um(self, query: str, params: tuple = ()) -> Optional[sqlite3.Row]:
+    def buscar_um(self, query: str, params: tuple = ()) -> sqlite3.Row | None:
         self.cursor.execute(query, params)
         return self.cursor.fetchone()
 
@@ -102,9 +106,9 @@ class Database:
 
     def __exit__(
         self,
-        exc_type: Optional[Type[BaseException]],
-        exc_value: Optional[BaseException],
-        tb: Optional[TracebackType],
+        exc_type: type[BaseException] | None,
+        exc_value: BaseException | None,
+        tb: TracebackType | None,
     ) -> None:
         if exc_type is not None:
             print(f"Erro no contexto: {exc_type.__name__} - {exc_value}")

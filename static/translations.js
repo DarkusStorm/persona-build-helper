@@ -29,6 +29,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Traduz textos fixos repetidos
+    document.querySelectorAll('[data-chave]').forEach(el => {
+        const key = el.getAttribute('data-chave');
+        if (text[lang] && text[lang][key]) {
+            el.textContent = text[lang][key];
+        }
+    });
+
+    // Traduz os nomes e métodos de obtenção
+    document.querySelectorAll('.traduzir-db').forEach(el => {
+        const translated = lang === 'pt-br' ? el.dataset.pt : el.dataset.en;
+        if (translated) {
+            el.textContent = translated;
+        }
+    });
+
     langSelect.addEventListener('change', translatePage);
     translatePage();
 });

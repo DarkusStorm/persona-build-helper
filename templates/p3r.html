@@ -1,6 +1,57 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% for build in builds %}
+    <article class="member-card">
+        <h3>{{ build.membro.nome }}</h3>
+        <p>{{ build.membro.tipo_equipamento }}</p>
+
+        {# Seção de Personas #}
+        {% if build.personas %}
+            {% for persona in build.personas %}
+                <h4>{{ persona.dados.nome }} ({{ persona.dados.arcana }})</h4>
+                <ul>
+                    {% for skill in persona.skills %}
+                        <li>
+                            <span class="traduzir-db" data-en="{{ skill.nome_en }}" data-pt="{{ skill.nome_pt or skill.nome_en }}">
+                                {{ skill.nome_en }}
+                            </span>
+                            —
+                            <span class="traduzir-db" data-en="{{ skill.como_obter_en }}" data-pt="{{ skill.como_obter_pt or skill.como_obter_en }}">
+                                {{ skill.como_obter_en }}
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        {% elif build.membro.wild_card %}
+            <p class="wildcard-notice" data-chave="wildcard_desc">
+                Wild Card User: Flexible Persona slots. Check recommended equipment below.
+            </p>
+        {% endif %}
+
+        {# Seção de Equipamentos (exibida para todos, incluindo os protagonistas) #}
+        {% if build.equipamentos %}
+            <h4 data-chave="rec_equip">Recommended Equipment</h4>
+            <ul>
+                {% for equip in build.equipamentos %}
+                    <li>
+                        <strong class="traduzir-db" data-en="{{ equip.nome_en }}" data-pt="{{ equip.nome_pt or equip.nome_en }}">
+                            {{ equip.nome_en }}
+                        </strong>
+                        ({{ equip.atributos }}) —
+                        <span class="traduzir-db" data-en="{{ equip.como_obter_en }}" data-pt="{{ equip.como_obter_pt or equip.como_obter_en }}">
+                            {{ equip.como_obter_en }}
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </article>
+    {% endfor %}
+{% endblock %}
+
+    <!--
     <h3>Makoto Yuki</h3>
     <h3>Yukari Takeba (Io)</h3>
     <h3>Junpei Iori (Hermes)</h3>
@@ -12,4 +63,4 @@
     <h3>Ken Amada (Nemesis)</h3>
     <h3>Shinjiro Aragaki (Castor)</h3>
     <h3>Metis (Psyche)</h3>
-{% endblock %}
+    -->

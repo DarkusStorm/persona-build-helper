@@ -12,6 +12,8 @@ def index():
 
 @app.route('/p3r')
 def p3r():
+    membros = PartyMember.buscar_por_jogo('p3r')
+    builds = [PartyMember.buscar_build_completa(m['id']) for m in membros]
     return render_template('p3r.html')
 
 @app.route('/p4g')
